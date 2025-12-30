@@ -8,24 +8,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.6'
-          channel: 'stable'
+          flutter-version: "3.19.6"
+          channel: "stable"
 
-      - name: Flutter pub get
+      - name: Flutter doctor
+        run: flutter doctor
+
+      - name: Get dependencies
         run: flutter pub get
 
-      - name: Create Android platform
-        run: flutter create .
+      - name: Create Android platform (if missing)
+        run: |
+          if [ ! -d "android" ]; then
+            flutter create .
+          fi
 
-      - name: Build APK
+      - name: Build APK (split per ABI)
         run: flutter build apk --release --split-per-abi
 
-      - name: Upload APK
+      - name: Upload APK files
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: apk-files
+          path: build/app/outputs/flutter-apk/*.apk
