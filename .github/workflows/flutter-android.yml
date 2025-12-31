@@ -27,9 +27,11 @@ jobs:
 
       # 🔥 YAHI ADD KARNA THA
       - name: Generate SHA1
-        run: |
-          cd android
-          ./gradlew signingReport
+  run: |
+    cd android
+    chmod +x gradlew || true
+    ./gradlew wrapper
+    ./gradlew signingReport
 
       - name: Commit android folder
         run: |
