@@ -1,5 +1,5 @@
 name: ludo
-description: A new Flutter project.
+description: Real Ludo App with Firebase OTP
 publish_to: "none"
 
 version: 1.0.0+1
@@ -11,12 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # 🔥 Firebase
   firebase_core: ^2.27.0
   firebase_auth: ^4.17.0
 
   cupertino_icons: ^1.0.6
-  provider: ^6.1.2
-  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
