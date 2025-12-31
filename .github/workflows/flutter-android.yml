@@ -29,8 +29,7 @@ jobs:
       - name: Generate SHA1
   run: |
     cd android
-    chmod +x gradlew || true
-    ./gradlew wrapper
+    chmod +x ./gradlew
     ./gradlew signingReport
 
       - name: Commit android folder
