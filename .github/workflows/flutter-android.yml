@@ -14,17 +14,11 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.19.6
-          channel: stable
+          flutter-version: '3.16.0'
+          channel: 'stable'
 
       - name: Flutter pub get
         run: flutter pub get
-
-      - name: Create Android folder if missing
-        run: |
-          if [ ! -d "android" ]; then
-            flutter create .
-          fi
 
       - name: Build APK (debug)
         run: flutter build apk --debug
